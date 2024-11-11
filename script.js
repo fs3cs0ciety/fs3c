@@ -114,15 +114,32 @@ document.addEventListener("DOMContentLoaded", async function() {
         console.warn("Warning: 'menu-toggle' or 'side-menu' element not found.");
     }
 
-    // Discord Icon Click Handling
-    const discordIcon = document.querySelector(".discord-icon");
+    const scrollbarThumb = document.getElementById("scrollbarThumb");
+    const totalDots = 60; // Set this to control the number of dots
 
-    if (discordIcon) {
-        discordIcon.addEventListener("click", (event) => {
-            event.preventDefault();
-            const webLink = "https://discord.com/users/d3dsec.ko"; // Replace with your Discord user ID
+    // Generate dots dynamically
+    for (let i = 0; i < totalDots; i++) {
+        const dot = document.createElement("div");
+        dot.classList.add("scroll-dot");
+        scrollbarThumb.appendChild(dot);
+    }
 
-            window.open(webLink, "_blank"); // Opens the Discord web profile in a new tab
+    const dots = document.querySelectorAll(".scroll-dot");
+
+    function updateDots() {
+        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollRatio = window.scrollY / scrollableHeight;
+        const visibleDots = Math.min(dots.length, Math.ceil(scrollRatio * dots.length));
+
+        dots.forEach((dot, index) => {
+            if (index < visibleDots) {
+                dot.classList.add("active");
+            } else {
+                dot.classList.remove("active");
+            }
         });
     }
+
+    window.addEventListener("scroll", updateDots);
+    updateDots();
 });

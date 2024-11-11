@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Real Intro to Arch Linux</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="../all-posts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to primary blog styles -->
 </head>
 <body>
+    <div class="navbar">
+        <!-- Navbar links here -->
+    </div>
+    <a href="https://github.com/fs3cs0ciety/" target="_blank" class="github-icon">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="https://discord.com/your-discord-link" target="_blank" class="discord-icon">
+        <i class="fab fa-discord"></i>
+    </a>
+    
     <!-- Navbar Toggle Button -->
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
@@ -47,6 +57,7 @@
     </nav>
 
     <!-- Blog Content -->
+    
     <header class="hero">
         <h1>The Real Intro to Arch Linux</h1>
         <p class="subtitle">Diving into the basics, benefits, and setup of Arch Linux for enthusiasts and newcomers.</p>
@@ -56,57 +67,78 @@
         <article class="blog-post-content">
             <section id="introduction">
                 <h2>Introduction</h2>
-                <p>Arch Linux is known for its simplicity, transparency, and customization options, making it a top choice for experienced users.</p>
+                <p>text here</p>
             </section>
 
             <section id="code-examples">
-                <h2>Installing Arch in a vm</h2>
+                <h2>Installing Arch (Main OS)</h2>
 
-                <!-- 1. System Update Code Block -->
-                <h3>1. Updating the System</h3>
-                <p>One of the first steps to keep your Arch Linux system secure and up-to-date is to perform a system-wide update:</p>
+                <!-- System Update Code Block -->
+                <h3>1. Downloading the iso</h3>
+
                 <pre><code>
-# Go grab the iso off the official archlinux.org page
-    - Navigate to https://archlinux.org/download/ and select your branch of choice if you dont know what to pick just simply go to the https://geo.mirror.pkgbuild.com/iso/2024.11.01/
+    # Go grab the iso off the official archlinux.org page
+
+        - https://archlinux.org/download/   ->  Download latest iso release
+
+        - https://geo.mirror.pkgbuild.com/iso/2024.11.01/   ->  If you dont know what to pick 
+
+    # Once iso is installed whip up some balena etcher 
+
+        - https://etcher.balena.io/#download-etcher     ->     Balena Download 
                 </code></pre>
-                <p>Here’s a visual guide to the command line interface of Arch Linux:</p>
-                <p><a href="https://via.placeholder.com/300" target="_blank">View Screenshot</a></p>
-
-                <!-- 2. Installing Packages -->
-                <h3>2. Installing Packages</h3>
-                <p>Installing new software on Arch Linux is simple with the <code>pacman</code> package manager. For example, to install Git, use the following command:</p>
+                <div class="image-row">
+                    <div class="image-container">
+                        <img src="../img/balena.png" alt="Root Hide Example">
+                    </div>
+                <div class="image-container">
+                <img src="../img/arch-download.png" alt="" class="blog-image">
+            </div>
+                </div>
+                <!-- Installing Packages -->
+                <h3>2. Get Balena Running</h3>
                 <pre><code>
-# Install Git
-sudo pacman -S git
+    # We need to unzip the zip file so go ahead and run this command ...
+
+        - unzip ~/Downloads/balenaEtcher-linux-x64-1.19.25.zip . # Zip name will differ based on release version
+
+    # Once unzipped go ahead an run ...
+
+        - cd balenaEtcher-linux-x64-1.19.25/balenaEtcher-linux-x64 && ./balena-etcher 
+
+        - Once balena is up and running select flash from file and navigate to your downloads folder. Select the archlinux iso
+
+        - After selecting the iso to flash go ahead and plug your 8+gb usb stick into the device and it will immediatly pick up on it and select it for you.
+
+        - Last step for this section is click flash and put your password in and begin the flash.
                 </code></pre>
-                <p>Refer to the <a href="https://via.placeholder.com/300" target="_blank">official documentation</a> for a full list of packages available for Arch Linux.</p>
+            </code></pre>
+            <div class="image-row">
+                <div class="image-container">
+                    <img src="../img/unzip_balena.png" alt="Root Hide Example">
+                </div>
+            <div class="image-container">
+            <img src="../img/starting_balena.png" alt="" class="blog-image">
+        </div>
+            </div>
 
-                <!-- 3. Removing Packages -->
-                <h3>3. Removing Packages</h3>
-                <p>To keep your system clean, it’s important to remove software you no longer need. Use the command below to remove a package:</p>
+                <!-- Removing Packages -->
+                <h3>3. Entering The boot menu and selecting to boot from the usb we have just created.</h3>
                 <pre><code>
-# Remove a package
 sudo pacman -R package-name
                 </code></pre>
 
-                <!-- 4. Cleaning Cache -->
+                <!-- Cleaning Cache -->
                 <h3>4. Cleaning the Package Cache</h3>
-                <p>Over time, the package cache can take up a lot of space. Clean it up with this command:</p>
                 <pre><code>
-# Clean package cache
 sudo pacman -Sc
                 </code></pre>
 
-                <!-- 5. Checking Disk Space -->
+                <!-- Checking Disk Space -->
                 <h3>5. Checking Disk Space</h3>
-                <p>It's good practice to monitor disk usage to ensure you don’t run out of space. Use the following command to check available disk space:</p>
                 <pre><code>
-# Check disk usage
 df -h
                 </code></pre>
-                <p>For more insights on disk management, check this <a href="https://via.placeholder.com/300" target="_blank">disk management guide</a>.</p>
-                
-
             </section>
         </article>
     </main>
@@ -115,6 +147,19 @@ df -h
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/BlackArch_logo.png/250px-BlackArch_logo.png" alt="Black Arch Logo" class="arch-logo">
     </footer>
 
+    <div class="custom-scrollbar">
+        <div id="scrollbarThumb">
+            <!-- Dynamic dots generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Zoom Overlay for Images -->
+<div id="zoom-overlay" class="zoom-overlay">
+    <img id="zoom-image" class="zoom-image" src="" alt="Zoomed Image">
+    <button id="close-zoom" class="close-zoom">✖</button>
+</div>
+
+    
     <!-- Link to the script.js file in blogs/ -->
     <script src="script.js"></script>
 </body>
