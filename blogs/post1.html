@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Real Intro to Arch Linux</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../all-posts.css">
+</head>
+<body>
+    <!-- Navbar Toggle Button -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Side Menu (Navbar) -->
+    <nav class="side-menu" id="side-menu">
+        <ul>
+            <li><a href="../index.html" class="glow-home">🏠 Homepage</a></li>
+            <details>
+                <summary>Guides/Walkthroughs</summary>
+                <ul>
+                    <details>
+                        <summary>Linux</summary>
+                        <ul>
+                            <li><a href="../linux/main-1.html">Linux Kernel Driver Programming</a></li>
+                            <li><a href="../guides/guide-3.html">Linux From Scratch</a></li>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Windows</summary>
+                        <ul>
+                            <li><a href="../windows/driver-setup.html">Creating Windows Drivers</a></li>
+                        </ul>
+                    </details>
+                </ul>
+            </details>
+            <details>
+                <summary>Blog Posts</summary>
+                <ul>
+                    <li><a href="../blogs/post1.html">The Real Intro to Arch Linux</a></li>
+                    <li><a href="../blogs/post5.html">The Real Intro to Windows</a></li>
+                    <li><a href="../blogs/post2.html">Tracking Down Rootkits</a></li>
+                    <li><a href="../blogs/post3.html">Debugging with GDB and GEF</a></li>
+                    <li><a href="../blogs/post4.html">Exploring Kernel Exploits</a></li>
+                </ul>
+            </details>
+        </ul>
+    </nav>
+
+    <!-- Blog Content -->
+    <header class="hero">
+        <h1>The Real Intro to Arch Linux</h1>
+        <p class="subtitle">Diving into the basics, benefits, and setup of Arch Linux for enthusiasts and newcomers.</p>
+    </header>
+
+    <main class="content">
+        <article class="blog-post-content">
+            <section id="introduction">
+                <h2>Introduction</h2>
+                <p>Arch Linux is known for its simplicity, transparency, and customization options, making it a top choice for experienced users.</p>
+            </section>
+
+            <section id="code-examples">
+                <h2>Installing Arch in a vm</h2>
+
+                <!-- 1. System Update Code Block -->
+                <h3>1. Updating the System</h3>
+                <p>One of the first steps to keep your Arch Linux system secure and up-to-date is to perform a system-wide update:</p>
+                <pre><code>
+# Go grab the iso off the official archlinux.org page
+    - Navigate to https://archlinux.org/download/ and select your branch of choice if you dont know what to pick just simply go to the https://geo.mirror.pkgbuild.com/iso/2024.11.01/
+                </code></pre>
+                <p>Here’s a visual guide to the command line interface of Arch Linux:</p>
+                <p><a href="https://via.placeholder.com/300" target="_blank">View Screenshot</a></p>
+
+                <!-- 2. Installing Packages -->
+                <h3>2. Installing Packages</h3>
+                <p>Installing new software on Arch Linux is simple with the <code>pacman</code> package manager. For example, to install Git, use the following command:</p>
+                <pre><code>
+# Install Git
+sudo pacman -S git
+                </code></pre>
+                <p>Refer to the <a href="https://via.placeholder.com/300" target="_blank">official documentation</a> for a full list of packages available for Arch Linux.</p>
+
+                <!-- 3. Removing Packages -->
+                <h3>3. Removing Packages</h3>
+                <p>To keep your system clean, it’s important to remove software you no longer need. Use the command below to remove a package:</p>
+                <pre><code>
+# Remove a package
+sudo pacman -R package-name
+                </code></pre>
+
+                <!-- 4. Cleaning Cache -->
+                <h3>4. Cleaning the Package Cache</h3>
+                <p>Over time, the package cache can take up a lot of space. Clean it up with this command:</p>
+                <pre><code>
+# Clean package cache
+sudo pacman -Sc
+                </code></pre>
+
+                <!-- 5. Checking Disk Space -->
+                <h3>5. Checking Disk Space</h3>
+                <p>It's good practice to monitor disk usage to ensure you don’t run out of space. Use the following command to check available disk space:</p>
+                <pre><code>
+# Check disk usage
+df -h
+                </code></pre>
+                <p>For more insights on disk management, check this <a href="https://via.placeholder.com/300" target="_blank">disk management guide</a>.</p>
+                
+
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/BlackArch_logo.png/250px-BlackArch_logo.png" alt="Black Arch Logo" class="arch-logo">
+    </footer>
+
+    <!-- Link to the script.js file in blogs/ -->
+    <script src="script.js"></script>
+</body>
+</html>

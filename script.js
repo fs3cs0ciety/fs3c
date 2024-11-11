@@ -101,12 +101,10 @@ document.addEventListener("DOMContentLoaded", async function() {
     const sideMenu = document.getElementById("side-menu");
 
     if (menuToggle && sideMenu) {
-        // Toggle sidebar visibility on button click
         menuToggle.addEventListener("click", function() {
             sideMenu.classList.toggle("open");
         });
 
-        // Close the sidebar if the user clicks outside of it
         document.addEventListener("click", function(event) {
             if (!sideMenu.contains(event.target) && event.target !== menuToggle) {
                 sideMenu.classList.remove("open");
@@ -114,5 +112,17 @@ document.addEventListener("DOMContentLoaded", async function() {
         });
     } else {
         console.warn("Warning: 'menu-toggle' or 'side-menu' element not found.");
+    }
+
+    // Discord Icon Click Handling
+    const discordIcon = document.querySelector(".discord-icon");
+
+    if (discordIcon) {
+        discordIcon.addEventListener("click", (event) => {
+            event.preventDefault();
+            const webLink = "https://discord.com/users/d3dsec.ko"; // Replace with your Discord user ID
+
+            window.open(webLink, "_blank"); // Opens the Discord web profile in a new tab
+        });
     }
 });

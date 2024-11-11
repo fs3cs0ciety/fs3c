@@ -145,8 +145,6 @@ body::before {
     font-weight: bold;
 }
 
-
-
 /* GitHub Repositories Section */
 .repos-section {
     margin-top: 30px;
@@ -191,6 +189,7 @@ body::before {
     color: #d0d0d0;
 }
 
+/* Breadcrumb Styling */
 .breadcrumb {
     margin-bottom: 15px;
     font-size: 1rem;
@@ -207,6 +206,7 @@ body::before {
     color: #ff6666;
 }
 
+/* Recent Blogs Section */
 .recent-blogs {
     margin-top: 20px;
     padding: 20px;
@@ -241,7 +241,7 @@ body::before {
 
 /* Blog Post Title Styling */
 .blog-post a {
-    color: #ff4c4c; /* Red color for titles */
+    color: #ff4c4c;
     text-decoration: none;
     font-weight: 600;
     font-size: 1.2rem;
@@ -256,7 +256,7 @@ body::before {
 /* Post Date Styling */
 .blog-post .post-date {
     font-size: 0.9rem;
-    color: #b0b0b0; /* Softer gray for post date */
+    color: #b0b0b0;
     font-style: italic;
     margin-top: 5px;
     display: block;
@@ -281,5 +281,48 @@ body::before {
     background-color: #ff6666;
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
 }
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.9);
+    color: #f5f5f5;
+}
+
+.footer p {
+    margin-bottom: 10px;
+}
+
+/* Icon Styling in Top Right Corner */
+/* Icon Styling in Top Right Corner */
+.github-icon, .discord-icon {
+    position: fixed;
+    top: 20px;
+    font-size: 32px; /* Size of the icon */
+    color: #ffffff; /* White color for icons */
+    transition: transform 0.3s ease, color 0.3s ease;
+    z-index: 10;
+    text-decoration: none;
+}
+
+/* Position GitHub and Discord Icons with more spacing */
+.github-icon {
+    right: 80px; /* Increased spacing to the left of Discord */
+}
+
+.discord-icon {
+    right: 30px; /* Slightly more space from the right edge */
+}
+
+/* Hover Effect */
+.github-icon:hover, .discord-icon:hover {
+    transform: scale(1.1); /* Slight zoom effect */
+    color: #ff4c4c; /* Change color to match theme on hover */
+}
+
+
+
+
 
 
