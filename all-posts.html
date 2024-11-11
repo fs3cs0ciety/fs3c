@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Blog Posts - Fs3c's Blog Series</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="all-posts.css">
+</head>
+<body>
+    <!-- Navbar Toggle Button -->
+    <button id="menu-toggle" class="menu-toggle">☰</button>
+
+    <!-- Sidebar Navbar with Directory Tree -->
+    <nav id="side-menu" class="side-menu">
+        <ul class="nav-list">
+            <details open>
+                <summary>Home</summary>
+                <ul>
+                    <li><a href="index.html">Homepage</a></li>
+                    <details>
+                        <summary>Guides/Walkthroughs</summary>
+                        <ul>
+                            <details>
+                                <summary>Linux</summary>
+                                <ul>
+                                    <li><a href="linux/main-1.html">Linux Kernel Driver Programming</a></li>
+                                    <li><a href="guides/guide-3.html">Linux From Scratch</a></li>
+                                </ul>
+                            </details>
+                            <details>
+                                <summary>Windows</summary>
+                                <ul>
+                                    <li><a href="windows/driver-setup.html">Setting Up Windows Drivers</a></li>
+                                    <li><a href="guides/guide-2.html">Creating a GitHub Pages Blog</a></li>
+                                </ul>
+                            </details>
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Blog Posts</summary>
+                        <ul>
+                            <li><a href="blogs/post1.html">The Real Intro to Arch Linux</a></li>
+                            <li><a href="blogs/post5.html">The Real Intro to Windows</a></li>
+                            <li><a href="blogs/post2.html">Tracking Down Rootkits</a></li>
+                            <li><a href="blogs/post3.html">Debugging with GDB and GEF</a></li>
+                            <li><a href="blogs/post4.html">Exploring Kernel Exploits</a></li>
+                        </ul>
+                    </details>
+                    <li><a href="pages/about.html">About</a></li>
+                </ul>
+            </details>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <h1>All Blog Posts</h1>
+        <p>Explore the complete collection of blog posts on various topics.</p>
+    </header>
+
+    <main class="content">
+        <section class="all-posts">
+            <h2>Blog Posts</h2>
+            <div id="all-posts-container">
+                <!-- Blog posts will be listed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-logo">
+        <img src="https://fosstorrents.com/img/blackarch.png" alt="Black Arch Logo" class="arch-logo">
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

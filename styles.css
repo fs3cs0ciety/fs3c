@@ -1,0 +1,285 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Background and Overlay */
+body {
+    background-image: url("https://hdwallpaperim.com/wp-content/uploads/2017/08/25/456993-hacking-hackers-748x421.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #f5f5f5;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px 50px;
+    color: #ff4c4c;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #f5f5f5;
+}
+
+.hero-button {
+    background-color: #ff4c4c;
+    color: #1e1e1e;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #ff6666;
+}
+
+/* Main Content Layout */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Directory Section */
+.directory-section {
+    margin-top: 30px;
+}
+
+.directory-section h2 {
+    font-size: 1.8rem;
+    color: #ff4c4c;
+    margin-bottom: 15px;
+}
+
+/* Directory Tree Styling */
+.directory-tree {
+    background: rgba(30, 30, 30, 0.9);
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Directory Styling */
+.directory-tree details {
+    margin-left: 20px;
+    font-weight: bold;
+    color: #ff4c4c;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+/* Folder Icon for Directories */
+.directory-tree summary {
+    list-style-type: none;
+    position: relative;
+    padding-left: 20px;
+}
+
+.directory-tree summary::before {
+    content: "📁"; /* Folder icon */
+    position: absolute;
+    left: 0;
+}
+
+/* Subdirectory and File Styling */
+.directory-tree ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+/* File Styling with Icon */
+.directory-tree ul li a {
+    position: relative;
+    padding-left: 20px;
+    color: #a8b8c3; /* Soft blue-gray color for file links */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* House Icon for Homepage Link */
+.directory-tree ul li a[href="index.html"]::before {
+    content: "🏠"; /* House icon for homepage */
+    position: absolute;
+    left: 0;
+}
+
+/* File Icon for Other Files */
+.directory-tree ul li a:not([href="index.html"])::before {
+    content: "📄"; /* File icon for all other files */
+    position: absolute;
+    left: 0;
+}
+
+/* Hover Effect for Links */
+.directory-tree li a:hover {
+    color: #ff4c4c;
+    font-weight: bold;
+}
+
+
+
+/* GitHub Repositories Section */
+.repos-section {
+    margin-top: 30px;
+    background: rgba(30, 30, 30, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.repos-section h2 {
+    font-size: 1.8rem;
+    color: #ff4c4c;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#repos-container {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: 1fr 1fr;
+}
+
+.repo {
+    background-color: rgba(45, 45, 45, 0.8);
+    padding: 15px;
+    border-radius: 5px;
+    color: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+.repo:hover {
+    background-color: rgba(45, 45, 45, 0.9);
+}
+
+.repo a {
+    color: #ff4c4c;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.repo p {
+    color: #d0d0d0;
+}
+
+.breadcrumb {
+    margin-bottom: 15px;
+    font-size: 1rem;
+    color: #ff4c4c;
+}
+
+.breadcrumb span {
+    cursor: pointer;
+    color: #ff4c4c;
+}
+
+.breadcrumb span:hover {
+    text-decoration: underline;
+    color: #ff6666;
+}
+
+.recent-blogs {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: rgba(30, 30, 30, 0.9);
+    border-radius: 10px;
+    color: #dcdcdc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.recent-blogs h2 {
+    font-size: 1.8rem;
+    color: #ff4c4c;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Blog Post Styling */
+#recent-blogs-container .blog-post {
+    background-color: rgba(50, 50, 50, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#recent-blogs-container .blog-post:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Blog Post Title Styling */
+.blog-post a {
+    color: #ff4c4c; /* Red color for titles */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.blog-post a:hover {
+    color: #ff6666;
+    text-shadow: 0px 0px 5px #ff6666;
+}
+
+/* Post Date Styling */
+.blog-post .post-date {
+    font-size: 0.9rem;
+    color: #b0b0b0; /* Softer gray for post date */
+    font-style: italic;
+    margin-top: 5px;
+    display: block;
+}
+
+/* "More" Button Styling */
+.more-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff4c4c;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.more-button:hover {
+    background-color: #ff6666;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+}
+
+

@@ -1,106 +1,85 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<title>Simple web Development Template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fs3c's Blog Series</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-	<nav class="navbar background">
-		<ul class="nav-list">
-			<div class="logo">
-				<img src= "logo.png">
-			</div>
-			<li><a href="#web">Web Technology</a></li>
-			<li><a href="#program">C Programming</a></li>
-			<li><a href="#course">Courses</a></li>
-		</ul>
+    <header class="hero">
+        <h1>Fs3c's Blog Series</h1>
+        <p>Welcome along on my journey to becoming a super efficient programmer!</p>
+    </header>
 
-		<div class="rightNav">
-			<input type="text" name="search" id="search">
-			<button class="btn btn-sm">Search</button>
-		</div>
-	</nav>
+    <main class="content">
+        <!-- Directory Tree -->
+        <section id="directory" class="directory-section">
+            <h2>Content Directory</h2>
+            <div class="directory-tree">
+                <details open>
+                    <summary>Home</summary>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
 
-	<section class="firstsection">
-		<div class="box-main">
-			<div class="firstHalf">
-				<h1 class="text-big" id="web">Web Technology</h1>
-				<p class="text-small">
-					HTML stands for HyperText Markup Language.
-					It is used to design web pages using a markup
-					language. HTML is the combination of Hypertext
-					and Markup language. Hypertext defines the
-					link between the web pages. A markup language
-					is used to define the text document within tag
-					which defines the structure of web pages.
-					HTML is a markup language that is used by the
-					browser to manipulate text, images, and other
-					content to display it in the required format.
-				</p>
+                        <!-- Guides/Walkthroughs Section -->
+                        <details>
+                            <summary>Guides/Walkthroughs</summary>
+                            <ul>
+                                <!-- Loonix Directory -->
+                                <details>
+                                    <summary>Linux</summary>
+                                    <ul>
+                                        <li><a href="linux/main-1.html">Linux Kernel Driver Programming</a></li>
+                                        <li><a href="guides/guide-3.html">Linux From Scratch</a></li>
+                                    </ul>
+                                </details>
 
+                                <!-- Windows Directory -->
+                                <details>
+                                    <summary>Windows</summary>
+                                    <ul>
+                                        <li><a href="windows/driver-setup.html">Creating Windows Drivers 2024</a></li>
+                                        <li><a href="guides/guide-2.html">Creating a GitHub Pages Blog</a></li>
+                                    </ul>
+                                </details>
+                            </ul>
+                        </details>
 
-			</div>
-		</div>
-	</section>
+                        <!-- Blog Posts Section -->
+                        <details>
+                            <summary>Blog Posts</summary>
+                            <ul>
+                                <li><a href="blogs/post1.html">The Real Intro to Arch Linux</a></li>
+                                <li><a href="blogs/post5.html">The Real Intro to Windows</a></li>
+                                <li><a href="blogs/post2.html">Tracking Down Rootkits</a></li>
+                                <li><a href="blogs/post3.html">Debugging with GDB and GEF</a></li>
+                                <li><a href="blogs/post4.html">Exploring Kernel Exploits</a></li>
+                            </ul>
+                        </details>
 
-	<section class="secondsection">
-		<div class="box-main">
-			<div class="firstHalf">
-				<h1 class="text-big" id="program">
-					C Programming
-				</h1>
-				<p class="text-small">
-					C is a procedural programming language. It
-					was initially developed by Dennis Ritchie
-					as a system programming language to write
-					operating system. The main features of C
-					language include low-level access to memory,
-					simple set of keywords, and clean style,
-					these features make C language suitable for
-					system programming like operating system or
-					compiler development.
-				</p>
+                        <li><a href="pages/about.html">About</a></li>
+                    </ul>
+                </details>
+            </div>
+        </section>
 
+        <!-- Recent Blogs Section -->
+        <section class="recent-blogs">
+            <h2>Recent Blogs</h2>
+            <div id="recent-blogs-container">
+                <!-- Blog posts will be added dynamically here -->
+            </div>
+            <a href="all-posts.html" class="more-button">More</a>
+        </section>
 
-			</div>
-		</div>
-	</section>
+        <!-- GitHub Repositories Section -->
+        <section class="repos-section">
+            <h2>My GitHub Repositories</h2>
+            <div id="repos-container">Loading repos...</div>
+        </section>
+    </main>
 
-	<section class="section">
-		<div class="paras">
-			<h1 class="sectionTag text-big">Java</h1>
-
-			<p class="sectionSubTag text-small">
-				Java has been one of the most popular
-				programming language for many years.
-				Java is Object Oriented. However it is
-				not considered as pure object oriented
-				as it provides support for primitive
-				data types (like int, char, etc) The
-				Java codes are first compiled into byte
-				code (machine independent code). Then
-				the byte code is run on Java Virtual
-				Machine (JVM) regardless of the
-				underlying architecture.
-			</p>
-
-
-		</div>
-
-		<div class="thumbnail">
-			<img src= "img.png" alt="laptop image">
-		</div>
-	</section>
-
-	<footer class="background">
-		<p class="text-footer">
-			Copyright ©-All rights are reserved
-		</p>
-
-
-	</footer>
+    <script src="script.js"></script>
 </body>
-
 </html>
