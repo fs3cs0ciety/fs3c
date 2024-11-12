@@ -33,6 +33,12 @@ body::-webkit-scrollbar {
     display: none; /* Chrome, Safari, and Opera */
 }
 
+p {
+    text-indent: 20px; /* Adjust this value as needed */
+    margin-left: 20px; /* Optional: Aligns the left margin with other content */
+}
+
+
 /* Hero Section */
 .hero {
     display: flex;
@@ -211,19 +217,65 @@ body::-webkit-scrollbar {
     line-height: 1.6; /* Improved readability */
 }
 
+/* General code block styling */
 pre {
-    background-color: #333;
-    color: #abb2bf;
+    background-color: #1e1e1e;
     padding: 15px;
-    border-radius: 15px;
-    font-family: 'Courier New', Courier, monospace;
+    border-radius: 8px;
     overflow-x: auto;
-    margin-left: 30px;
-    margin-right: 30px;
-    margin-bottom: 3rem;
+    font-size: 14px;
+    color: #d4d4d4;
+    line-height: 1.5;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+pre code {
+    color: inherit;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Code styling to match VS Code Dark+ theme */
+.syntax-keyword {
+    color: #569cd6; /* Blue for keywords */
+}
+
+.syntax-directive {
+    color: #c586c0; /* Purple for directives */
+    font-weight: bold;
+}
+
+.syntax-type {
+    color: #4ec9b0; /* Aqua for types */
+}
+
+.syntax-function {
+    color: #dcdcaa; /* Light yellow for functions */
+}
+
+.syntax-string {
+    color: #ce9178; /* Reddish for strings */
+}
+
+.syntax-comment {
+    color: #6a9955; /* Green for comments */
+}
+
+.syntax-number {
+    color: #b5cea8; /* Light green for numbers */
+}
+
+.syntax-macro {
+    color: #c586c0; /* Light purple for macros */
+}
+/* Inline code blocks */
+code {
+    background-color: transparent;
+    color: inherit; /* Uses colors defined above */
+    font-family: inherit;
+}
+
+
+
 
 /* CSS for images */
 .blog-image {
@@ -233,15 +285,20 @@ pre {
     border-radius: 8px; /* Optional rounded corners */
 }
 
+.blog-content p {
+    text-indent: 20px;
+    margin-left: 20px;
+}
+
 
 .copy-button {
     position: absolute;
     top: 10px;
     right: 10px;
     background-color: #ff4c4c;
-    color: #fff;
+    color: #ffffff;
     border: none;
-    border-radius: 3px;
+    border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 0.8rem;
@@ -253,10 +310,6 @@ pre {
     opacity: 1;
 }
 
-code {
-    color: #f5f5f5;
-    font-family: 'Courier New', Courier, monospace;
-}
 
 /* Button Styling */
 .more-button {
@@ -284,6 +337,7 @@ code {
     transition: transform 0.3s ease, color 0.3s ease;
     z-index: 1000;
     text-decoration: none;
+    right: 80px;
 }
 
 .github-icon {

