@@ -66,8 +66,10 @@
     <main class="content">
         <article class="blog-post-content">
             <section id="introduction">
-                <h2>Introduction</h2>
-                <p>text here</p>
+                <h2>IMPORTANT!</h2>
+                <p>- Turn off Secure Boot</p>
+                <p>- 8+ gb flashdrive</p>
+                <p>- A Computer</p>
             </section>
 
             <section id="code-examples">
@@ -125,19 +127,60 @@
                 <!-- Removing Packages -->
                 <h3>3. Entering The boot menu and selecting to boot from the usb we have just created.</h3>
                 <pre><code>
-sudo pacman -R package-name
-                </code></pre>
+    # Your going to have to lookup your computers specs but for mine which is a asus vivobook 16 it is esc for me to enter the boot.
 
+    # You will be prompted with your ssd, your os and two partitions of the usb select partition 1.
+                </code></pre>
+                <div class="image-row">
+                    <div class="image-container">
+                        <img src="../img/arch.png" alt="Root Hide Example">
+                    </div>
+                </div>
                 <!-- Cleaning Cache -->
-                <h3>4. Cleaning the Package Cache</h3>
+                <h3>4. Entering the archinstall from terminal</h3>
                 <pre><code>
-sudo pacman -Sc
-                </code></pre>
+    # Type archinstall
 
+    # This will direct you to this screen below this section. I will list the key sections you will need you must do ...
+
+        - Select mirror region you are in so whatever country you are located inside of
+        - Use a best-effort default partition layout and check off your storage device
+        - I select ext4 its up to you and you can if you want to create seperate partitions for home you can I dont
+        - Set all passwords and user account
+        - For Profile Select either minimal for the hyprland experience. For this install I will just select gnome, hyprland is for another time.
+        - Pipewire audio and lts kernel is my choices for those categories
+        - Type git and sudo for additional Packages
+        - Network Configuration should be set to Use NetworkManager
+        - Select time zone you are in and then finally hit that install button
+                </code></pre>
+                <div class="image-row">
+                    <div class="image-container">
+                        <img src="../img/archinstall.jpg" alt="Arch Install Example">
+                    </div>
+                    <div class="image-container">
+                        <img src="../img/final.jpg" alt="Final Install Example">
+                    </div>
+                </div>
                 <!-- Checking Disk Space -->
-                <h3>5. Checking Disk Space</h3>
+                <h3>5. Setting up yay</h3>
                 <pre><code>
-df -h
+    # Setting up yay the right way make sure you arent root when installing This
+
+        - git clone https://aur.archlinux.org/yay.git
+
+        - cd yay-git
+
+        - makepkg -si
+
+        - After installing try yay vscode
+                </code></pre>
+                <h3>6. Well that about sums it up for this post, hope you enjoyed installing the best operating system ever lol!</h3>
+    
+                <code><pre>
+                    
+    # Helpful links after installing arch 
+                
+        - https://github.com/mylinuxforwork/dotfiles/blob/main/README.md
                 </code></pre>
             </section>
         </article>
