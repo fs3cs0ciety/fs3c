@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Home page -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    
+    <!-- All posts page -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/all-posts.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <!-- Blog posts -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/blogs/post1.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/blogs/post2.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/blogs/post3.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/blogs/post4.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/blogs/post5.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Guides -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/guides/guide-1.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/guides/guide-2.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/guides/guide-3.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/guides/guide-4.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/guides/guide-5.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Images (optional for indexing individual image files) -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/img/arch-download.png</loc>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/img/archinstall.jpg</loc>
+    </url>
+    <!-- Add more image entries as needed -->
+    
+    <!-- Other pages -->
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/linux/main-1.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/pages/about.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/pages/blog.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://fs3cs0ciety.github.io/fsec/windows/win-driver.html</loc>
+        <lastmod>2024-11-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>
